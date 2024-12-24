@@ -20,14 +20,20 @@ const dburl = process.env.DB_URL;
 const port = process.env.PORT;
 mongoose.connect(dburl);
 
-allowedOrigin = 'http://localhost:3000'
+const allowedOrigin = 'https://event-ale-doc.onrender.com';
 
-app.use(cors(
-  {
-    credentials:true,
-    origin: allowedOrigin,
-  }
-));
+app.use(cors({
+  credentials: true,
+  origin: (origin, callback) => {
+    if (allowedOrigin.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+}));
+
+
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));

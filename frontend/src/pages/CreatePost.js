@@ -1,4 +1,3 @@
-import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import {useState} from "react";
 import {Navigate} from "react-router-dom";
@@ -18,7 +17,7 @@ export default function CreatePost() {
     data.set('content', content);
     data.set('file', files[0]);
     ev.preventDefault();
-    const response = await fetch('http://localhost:5000/post', {
+    const response = await fetch('https://event-ale-doc.onrender.com/post', {
       method: 'POST',
       body: data,
       credentials: 'include',

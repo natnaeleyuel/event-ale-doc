@@ -7,7 +7,7 @@ export default function PostPage() {
   const [postInfo,setPostInfo] = useState(null);
   const {id} = useParams();
   useEffect(() => {
-    fetch(`http://localhost:5000/post/${id}`)
+    fetch(`https://event-ale-doc.onrender.com/post/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
@@ -23,7 +23,7 @@ export default function PostPage() {
       <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
       <div className="author">by @{postInfo.author.username}</div>
       <div className="image">
-        <img src={`http://localhost:5000/${postInfo.cover}`} alt=""/>
+        <img src={`https://event-ale-doc.onrender.com/${postInfo.cover}`} alt=""/>
       </div>
       <div>
         <h3>Summary</h3>
